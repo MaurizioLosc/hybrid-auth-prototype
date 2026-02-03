@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const ConnectDB = require('./config/db');
-
+const authRoute = require('./routes/auth.route')
 
 const app = express();
 
@@ -29,6 +29,8 @@ app.get('/health', (req, res) => {
         timestamp: new Date()
     });
 });
+
+app.use("/auth", authRoute)
 
 // globle error healder
 app.use((err, req, res, next) => {
