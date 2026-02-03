@@ -1,0 +1,34 @@
+{
+    "ADMIN": [
+        "READ_USER",
+        "UPDATE_USER",
+        "CREATE_USER"
+    ],
+    "SUPERVISOR": [
+        "READ_USER"
+    ],
+    "AUDITOR": [
+        "READ_USER",
+        "READ_AUDIT_LOG"
+    ],
+    "CONDITIONAL": {
+        "DELETE_USER": {
+            "allowed": false,
+            "overrideRequired": true,
+            "constraints": {
+                "justificationRequired": true,
+                "maxDurationMinutes": 60,
+                "dualApproval": false
+            }
+        },
+        "RESET_CREDENTIALS": {
+            "allowed": false,
+            "overrideRequired": true,
+            "constraints": {
+                "justificationRequired": true,
+                "maxDurationMinutes": 30,
+                "dualApproval": true
+            }
+        }
+    }
+}
