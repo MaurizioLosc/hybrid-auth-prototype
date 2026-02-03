@@ -5,6 +5,8 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const ConnectDB = require('./config/db');
 const authRoute = require('./routes/auth.route')
+const adminRoute = require('./routes/admin.route')
+const authMiddeware = require('./middlewares/auth')
 
 const app = express();
 
@@ -31,6 +33,8 @@ app.get('/health', (req, res) => {
 });
 
 app.use("/auth", authRoute)
+
+app.use("/admin", authMiddeware, adminRoute)
 
 // globle error healder
 app.use((err, req, res, next) => {
